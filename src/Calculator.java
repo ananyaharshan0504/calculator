@@ -10,12 +10,19 @@ import javax.swing.SwingConstants;
 
 public class Calculator implements ActionListener{
 	boolean isOperatorclicked=false;
-	String oldValue; 
+	String oldValue;
+	String oldValue1;
+	String oldValue2;
+	String oldValue3;
+	
 	String newValue;
-	String result;
-	int a,b;
-	int c;
+	float result;
+	float result1;
+	float result2;
+	float result3;
+	int operator;
 	JFrame jf;
+	
 	JLabel displayLabel;
 	JButton sevenButton;
 	JButton eightButton;
@@ -33,10 +40,10 @@ public class Calculator implements ActionListener{
 		
 		displayLabel=new JLabel();
 		displayLabel.setBounds(30,50,540,40);
-		displayLabel.setBackground(Color.YELLOW);
+		displayLabel.setBackground(Color.DARK_GRAY);
 		displayLabel.setOpaque(true);
 		displayLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		displayLabel.setForeground(Color.BLACK);
+		displayLabel.setForeground(Color.WHITE);
 		jf.add(displayLabel);
 		
 
@@ -138,7 +145,7 @@ public class Calculator implements ActionListener{
 		
 		 clearButton=new JButton("clear");
 			clearButton.setBounds(430,430,80,80);
-			clearButton.setFont(new Font("Arial",Font.PLAIN,40));
+			clearButton.setFont(new Font("Arial",Font.PLAIN,20));
 			clearButton.addActionListener(this);
 			jf.add(clearButton);
 		
@@ -231,25 +238,53 @@ public class Calculator implements ActionListener{
 			 displayLabel.setText(displayLabel.getText()+".");
 			 }
 		 }else if(e.getSource()==equalButton) {
-			String newValue=displayLabel.getText();
+			switch (operator) {
+			case 1:
+			{
+		   String newValue=displayLabel.getText();
 			float oldValueF=Float.parseFloat(oldValue);
 			float newValueF=Float.parseFloat(newValue);
 			float result=oldValueF+newValueF;
-			displayLabel.setText(result+"");
+			displayLabel.setText(result+" ");
+			break;
+			}
+			case 2:{
+				String newValue=displayLabel.getText();
+				float oldValueF1=Float.parseFloat(oldValue1);
+				float newValueF=Float.parseFloat(newValue);
+				float result1=oldValueF1-newValueF;
+				displayLabel.setText(result1+" ");
+				break;
+			}
+			case 3:{
+				String newValue=displayLabel.getText();
+				float oldValueF2=Float.parseFloat(oldValue2);
+				float newValueF=Float.parseFloat(newValue);
+				float result2=oldValueF2*newValueF;
+				displayLabel.setText(result2+" ");
+				break;
+			}
+			case 4:{
+				String newValue=displayLabel.getText();
+				float oldValueF3=Float.parseFloat(oldValue3);
+				float newValueF=Float.parseFloat(newValue);
+				float result3=oldValueF3/newValueF;
+				displayLabel.setText(result3+" ");
+				break;
+			}
+			default:
+				throw new IllegalArgumentException("Unexpected value: " + operator);
+			}
 		 }else if(e.getSource()==divButton) {
-			 
 		isOperatorclicked=true;
-	    oldValue=displayLabel.getText(); 
+	    oldValue3=displayLabel.getText(); 
 		 }else if(e.getSource()==mulButton) {
-			 displayLabel.setText(c+"");
 			 isOperatorclicked=true;
-			    oldValue=displayLabel.getText(); 
+			    oldValue2=displayLabel.getText(); 
 		 }else if(e.getSource()==minusButton) { 
-			 displayLabel.setText(c+"");
 			 isOperatorclicked=true;
-			    oldValue=displayLabel.getText();
+			    oldValue1=displayLabel.getText();
 		 }else if(e.getSource()==plusButton) {
-			 displayLabel.setText(c+"");
 			 isOperatorclicked=true;
 			    oldValue=displayLabel.getText();
 		 }else if(e.getSource()==clearButton) {  
